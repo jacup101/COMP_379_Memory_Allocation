@@ -180,6 +180,8 @@ Pick An Option:
         returnVal = next_fit(memory, size, startingIndex)
         memory = returnVal[0]
         startingIndex = returnVal[1]
+        if usingArduino is True:
+            lightMemory(memory, pinNumbers)
     if selection == 3:
         print("Select Size for Memory:\n")
         size = int(input())
