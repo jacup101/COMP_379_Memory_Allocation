@@ -9,9 +9,13 @@ For this project, we decided to continue our use of the Arduino and Raspberry Pi
 
 ## Memory Allocation
 There are a number of different methods that free memory can be allocated. For the purposes of this project, we focused solely on allocation, using four separate methods:
+
   1.) First-Fit - Memory is allocated in the first 'hole' in memory that has enough space
+  
   2.) Next-Fit - Rather than start over at the beginning of the memory 'array', a pointer is kept to the last location allocated in memory, and the first hole large enough after will be occupied.
+  
   3.) Best-Fit - Rather than immediately storing memory in the first location, this method will search the entire memory 'array' for the best fit possible, ideally equal to the size of memory allocated.
+  
   4.) Worst-Fit - Similar to best-fit, but instead of the best fit possible, the worst-fit is used, usually the largest hole available.
   
 Each of the above methods have their own trade-offs: both first-fit and next-fit are in theory quicker, as they do not have to search the entire array. However, best-fit tries to fill smalelr holes that otherwise might remain unfilled, and worst-fit tries to eliminate the creation of such small holes altogether, which are useful properties but come at the cost of lost efficiency.
