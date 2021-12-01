@@ -206,7 +206,7 @@ Pick An Option:
             print("Too big, defaulting to memSize / 4")
             memory = randomizeArray(memSize, int(memSize / 4))
         else:
-            memory = randomizeArray(memSize, max)
+            memory = randomizeArray(memSize, maximum)
         if usingArduino is True:
             lightMemory(memory, pinNumbers)
     if selection == 7:
