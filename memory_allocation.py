@@ -130,21 +130,22 @@ def randomizeArray(size, randomAmt):
     return arr
 
 def lightMemory(mem, pinNumbers):
+    global board
     for i in range(len(mem)):
         if mem[i] == 0:
-            print("Would have writtein 0 here at pin {0}".format(pinNumbers[i]))
-            #board.digital[pinNumbers[i]].write(0)
+            board.digital[pinNumbers[i]].write(0)
         if mem[i] == 1:
-            print("Would have written 1 here at pin {0}".format(pinNumbers[i]))
-            #board.digital[pinNumbers[i]].write(1)
+            board.digital[pinNumbers[i]].write(1)
 
 print("Is an Arduino Mega connected to the device on port ttyUSB0? (y/n)")
 arduinoCheck = input()
 if 'y' in arduinoCheck:
     usingArduino = True
-    #board = ArduinoMega('/dev/ttyUSB0')
+    board = ArduinoMega('/dev/ttyACM0')
     memory = randomizeArray(20, 5)
-    pinNumbers = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    memSize = 20
+    pinNumbers = [26,27,28,29,32,33,34,35,38,39,40,41,44,45,46,47,50,51,52,53]
+    lightMemory(memory,pinNumbers)
 else:
     print("Size for array?\n")
     memSize = int(input())
@@ -196,13 +197,18 @@ Pick An Option:
             lightMemory(memory, pinNumbers)
     if selection == 5:
         memory = [0 for i in range(memSize)]
+        if usingArduino is True:
+            lightMemory(memory, pinNumbers)
     if selection == 6:
         print("Max random 1s?")
-        max = int(input())
-        if max > memSize:
+        maximum = int(input())
+        if maximum > memSize:
             print("Too big, defaulting to memSize / 4")
             memory = randomizeArray(memSize, int(memSize / 4))
         else:
             memory = randomizeArray(memSize, max)
+        if usingArduino is True:
+            lightMemory(memory, pinNumbers)
     if selection == 7:
         break
+
